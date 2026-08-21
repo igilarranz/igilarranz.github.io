@@ -4,13 +4,15 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Isabella Gilarranz</title>
-<meta name="description" content="Isabella Gilarranz — electrical engineering & computer science at the University of Miami. Robots, tiny circuit boards, and firmware." />
+<meta name="description" content="Isabella Gilarranz — electrical engineering & computer science at the University of Miami. Circuit boards, planners, small apps, and whatever is in between." />
 <meta property="og:title" content="Isabella Gilarranz" />
-<meta property="og:description" content="EE + CS junior at the University of Miami. I build robots, tiny circuit boards, and the firmware that brings them to life." />
+<meta property="og:description" content="EE + CS junior at the University of Miami. Circuit boards, planners, small apps, and whatever is in between." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://igilarranz.github.io/" />
-<meta property="og:image" content="https://igilarranz.github.io/bunny.png" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:image" content="https://igilarranz.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAd0lEQVR4nO2VSw7AIAhE5+oeYU7crrpp+qHqYCG8hI2J8gKiQFF8hK1tT4G0AjQmkElxtcBBT/klleAqAWsC61pegStyCLBjzORTAKUABx4VScnhJcAJ9jIBevYefxSw3o+YAhywPu+NKWD599/i7gyEEigKOLEDsZjEcIsO2EMAAAAASUVORK5CYII=" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -60,7 +62,7 @@
   a:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; border-radius: 2px; }
 
   .col {
-    max-width: 620px;
+    max-width: 660px;
     margin: 0 auto;
     padding: 0 1.4rem;
   }
@@ -136,11 +138,14 @@
   .topbar-links a { color: var(--soft); border-bottom-color: transparent; }
   .topbar-links a:hover { color: var(--rose-deep); border-bottom-color: var(--blush); }
 
+  .topbar-name, .topbar-links a { white-space: nowrap; }
+  @media (max-width: 480px) { .topbar-links { gap: 0.75rem; font-size: 0.82rem; } .topbar-name { font-size: 0.92rem; } .topbar-inner { padding: 0.55rem 1rem; } }
+
   section, .say-hi { scroll-margin-top: 64px; }
 
   /* ---------- hero ---------- */
   header {
-    padding: 5.5rem 0 4.5rem;
+    padding: 5.5rem 0 2.6rem;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -168,7 +173,7 @@
     height: 84px;
     image-rendering: pixelated;
     display: inline-block;
-    margin-bottom: 1.6rem;
+    margin-bottom: 1.1rem;
   }
   @media (hover: hover) {
     .bunny { transition: transform 0.18s ease; }
@@ -199,6 +204,65 @@
     font-size: 0.95rem;
   }
 
+  /* ---------- now strip (under hero) ---------- */
+  .now {
+    display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 0.45rem 1.4rem;
+    margin: 0 auto 0.2rem; max-width: 600px; font-size: 0.86rem; color: var(--soft);
+    padding: 0.9rem 1.2rem; border: 1px dashed var(--line); border-radius: 12px;
+  }
+  .now span::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--rose); margin-right: 0.5em; vertical-align: middle; position: relative; top: -1px; }
+  .now strong { color: var(--ink); font-weight: 500; }
+
+  /* ---------- skills ---------- */
+  .skills { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.4rem; }
+  .skills span {
+    font-size: 0.78rem; padding: 0.22rem 0.7rem; border-radius: 99px;
+    border: 1px solid var(--line); color: var(--soft); background: #fff;
+  }
+  .skills span.hw { border-color: var(--blush); background: var(--blush); color: var(--rose-deep); }
+
+  /* ---------- project thumbnails ---------- */
+  .things li { display: grid; grid-template-columns: 120px 1fr; gap: 1.3rem; align-items: start; }
+  .thumb {
+    aspect-ratio: 1; border-radius: 10px; overflow: hidden; background: var(--blush);
+    display: grid; place-items: center; text-align: center;
+    font-family: 'Pixelify Sans', monospace; font-size: 0.66rem; letter-spacing: 0.06em; color: var(--bunny);
+    line-height: 1.3; box-shadow: inset 0 0 0 1px var(--line);
+  }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .thumb img.icon { image-rendering: pixelated; width: 56%; height: 56%; }
+  .spec { margin-top: 0.45rem; font-size: 0.8rem; color: var(--bunny); letter-spacing: 0.01em; }
+  .spec b { font-weight: 500; color: var(--soft); }
+  .status {
+    display: inline-block; font-family: 'Pixelify Sans', monospace; font-size: 0.7rem; letter-spacing: 0.08em;
+    color: var(--rose-deep); background: var(--blush); padding: 0.1rem 0.5rem; border-radius: 4px; margin-left: 0.3rem; vertical-align: middle;
+  }
+  @media (max-width: 480px) {
+    .things li { grid-template-columns: 1fr; gap: 0.7rem; }
+    .thumb { width: 104px; }
+  }
+
+
+  /* ---------- ascii field ---------- */
+  header { padding-top: 0; }
+  .field {
+    position: relative; width: 100%; height: min(44vh, 360px); min-height: 240px;
+    overflow: hidden; margin-bottom: 0.5rem; cursor: crosshair;
+  }
+  .field canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .field .bunny-wrap { position: absolute; left: 50%; top: 50%; margin: -42px 0 0 -42px; z-index: 2; }
+  .field .bunny { margin: 0; display: block; }
+  .field canvas {
+    -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+  }
+  .field .hint {
+    position: absolute; left: 1.2rem; bottom: 1.2rem;
+    font-family: 'Pixelify Sans', monospace; font-size: 0.72rem; letter-spacing: 0.12em; color: var(--bunny); white-space: nowrap;
+  }
+  @media (max-width: 600px) { .field { min-height: 200px; height: 220px; margin-bottom: 0; } }
+
+
   /* ---------- sections ---------- */
   section { padding: 3.2rem 0; }
   section + section { border-top: 1px dashed var(--line); }
@@ -208,7 +272,7 @@
     font-size: 1.45rem;
     margin-bottom: 1.4rem;
   }
-  h2 .px { margin-right: 0.5rem; font-size: 0.75rem; }
+  h2 .mark { font-family: 'Pixelify Sans', monospace; font-size: 0.95em; color: var(--rose); margin-right: 0.45rem; font-weight: 400; }
   section p { color: var(--soft); margin-bottom: 1rem; }
   section p strong { color: var(--ink); font-weight: 600; }
 
@@ -270,9 +334,13 @@
   /* ---------- contact ---------- */
   .say-hi { text-align: center; padding: 4rem 0 2rem; }
   .say-hi h2 { margin-bottom: 0.8rem; }
+  .h2-star { color: var(--rose-deep); vertical-align: -4px; margin-left: 0.25rem; display: inline-block; animation: h2twinkle 2.4s ease-in-out infinite; }
+  @keyframes h2twinkle { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.55; transform: scale(0.85); } }
+  @media (prefers-reduced-motion: reduce) { .h2-star { animation: none; } }
   .say-hi p { max-width: 420px; margin: 0 auto 1.8rem; }
   .say-hi .hero-links { margin-bottom: 0; }
 
+  footer span { font-size: 0.8rem; color: var(--bunny); }
   footer {
     text-align: center;
     padding: 2.5rem 0 3rem;
@@ -286,6 +354,7 @@
   .bunny-wrap {
     position: relative;
     display: inline-block;
+    line-height: 0;
     animation: hopin 1.5s cubic-bezier(0.22, 0.9, 0.36, 1) both;
     animation-delay: 0.35s;
   }
@@ -462,118 +531,132 @@
     <div class="topbar-links">
       <a href="#about">about</a>
       <a href="#projects">projects</a>
-      <a href="resume.pdf" rel="noopener">resume</a>
+      <a href="resume.pdf" target="_blank" rel="noopener">resume</a>
       <a href="#contact">say hi</a>
     </div>
   </div>
 </nav>
 
 <header id="top">
+  <div class="field" id="field"><canvas id="ascii"></canvas></div>
   <div class="col">
-    <span class="bunny-wrap"><img class="bunny" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAd0lEQVR4nO2VSw7AIAhE5+oeYU7crrpp+qHqYCG8hI2J8gKiQFF8hK1tT4G0AjQmkElxtcBBT/klleAqAWsC61pegStyCLBjzORTAKUABx4VScnhJcAJ9jIBevYefxSw3o+YAhywPu+NKWD599/i7gyEEigKOLEDsZjEcIsO2EMAAAAASUVORK5CYII=" alt="A little pixel-art bunny" width="84" height="84" /></span>
-    <span class="px">hi, i'm</span>
+        <span class="px">hi, i'm</span>
     <h1>Isabella Gilarranz</h1>
-    <p class="hero-line">EE + CS junior at the University of Miami. I build <em>robots</em>, <em>tiny circuit boards</em>, and the <em>firmware</em> that brings them to life.</p>
+    <p class="hero-line">EE + CS junior at the University of Miami. I like building things, from <em>circuit boards</em> to <em>planners</em> to <em>small apps</em>.</p>
     <nav class="hero-links" aria-label="Links">
+      <a href="resume.pdf" target="_blank" rel="noopener">resume</a>
       <a href="mailto:isabellagilarranz@gmail.com">email</a>
-      <a href="https://github.com/igilarranz" rel="noopener">github</a>
-      <a href="https://www.linkedin.com/in/isabellagilarranz/" rel="noopener">linkedin</a>
+      <a href="https://github.com/igilarranz" target="_blank" rel="noopener">github</a>
+      <a href="https://www.linkedin.com/in/isabellagilarranz/" target="_blank" rel="noopener">linkedin</a>
     </nav>
   </div>
 </header>
+<div class="col">
+  <div class="now" aria-label="Right now">
+    <span>finishing the <strong>BEHAVIOR Challenge</strong> planner</span>
+    <span>bringing up <strong>MotionSense-IMU rev A</strong></span>
+    <span>open to <strong>Summer 2027</strong> internships</span>
+  </div>
+</div>
+
+
 
 <section id="about">
   <div class="col">
-    <h2><span class="px">✦</span>a little about me</h2>
-    <p>I'm an EE + CS double major with a math minor and a focus in <strong>data science</strong>.</p>
-    <p>My path here was a little non-linear: I started in Broward College's Honors program, transferred to UM on a President's Scholarship, and along the way worked as a <strong>data analyst at a private bank</strong> and a <strong>brain-machine interface researcher</strong>. Somewhere between the dashboards and the EEG signals, I figured out that the part I loved most was the hardware underneath it all.</p>
-    <p>These days you'll find me at UM's <a href="https://rmlab.org/" rel="noopener">Robotics &amp; Mechatronics Lab</a>, co-leading the build of a full open-source humanoid robot, at <strong>UMaker</strong> &mdash; the student makerspace I help run &mdash; or at my desk routing traces in KiCad.</p>
-    <p>I'm looking for <strong>Summer 2027 internships</strong> in embedded systems, firmware, and hardware engineering.</p>
+    <h2>a little about me</h2>
+    <p>I'm a double major in electrical engineering and computer science, with a math minor. I like problems that sit between the two: a board that needs a driver, a task that needs a planner, a model that has to run on a chip with 512 KB of RAM.</p>
+    <p>Before UM I did my A.A. at Broward College, then transferred on a President's Scholarship. Along the way I spent a year at <strong>Safra National Bank</strong> (IT help desk, then their BI dashboards) and a summer doing <strong>brain-machine interface research</strong>, which is where I first got to work with real signals from real hardware.</p>
+    <p>Right now I'm a researcher at UM's <a href="https://rmlab.org/" target="_blank" rel="noopener">Robotics &amp; Mechatronics Lab</a>, where I write the task planner for our <strong>BEHAVIOR Challenge 2026</strong> entry and help run the build of an open-source humanoid. I'm interested in embedded systems, AI, and the places where software meets the physical world.</p>
+    <p>Things I use a lot:</p>
+    <div class="skills">
+      <span>C / C++</span><span>Python</span><span>KiCad</span><span>ESP32</span><span>I²C · SPI · I2S</span><span>PDDL · Fast Downward</span><span>Git · Linux</span><span>SQL · Power BI</span><span>JavaScript · Electron</span>
+    </div>
   </div>
 </section>
 
 <section id="projects">
   <div class="col">
-    <h2><span class="px">✦</span>things i've made</h2>
+    <h2>things i've made</h2>
     <ul class="things">
       <li>
+        <div class="thumb"><img class="icon" src="assets/behavior.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'photo soon'}))"></div>
+        <div>
         <div class="thing-head">
-          <h3><a href="https://github.com/igilarranz/MotionSense-IMU" rel="noopener">MotionSense-IMU</a></h3>
-          <div class="tags"><span>KiCad</span><span>PCB design</span><span>I²C</span></div>
+          <h3>BEHAVIOR Challenge planner<span class="status">100 / 100 tasks</span></h3>
         </div>
-        <p>A custom 6-axis motion sensor board I designed from scratch — schematic, layout, and fab-ready files for a 2-layer PCB with USB-C power, headed to manufacturing.</p>
+        <p>The symbolic planning layer for our lab's entry. I wrote the compiler from BDDL task specs to PDDL, defined the predicates and operators, and connected it to Fast Downward. All 100 benchmark tasks produce a plan, with a CI check to keep it that way.</p>
+        <div class="spec"><b>BDDL → PDDL</b> · <b>Fast Downward</b> · 62 operators · coverage analysis · CI</div>
+        </div>
       </li>
       <li>
+        <div class="thumb"><img src="assets/motionsense.jpg" alt="3D render of the MotionSense IMU board" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'photo soon'}))"></div>
+        <div>
         <div class="thing-head">
-          <h3><a href="https://rmlab.org/" rel="noopener">Berkeley Humanoid Lite</a></h3>
-          <div class="tags"><span>robotics</span><span>22 actuators</span></div>
+          <h3><a href="https://github.com/igilarranz/MotionSense-IMU" target="_blank" rel="noopener">MotionSense-IMU</a><span class="status">fabricated</span></h3>
         </div>
-        <p>Co-leading the assembly of an open-source humanoid at my lab. I built the master tracker that untangled two conflicting build records — and caught a missing motor order before it stalled the whole project.</p>
+        <p>My first board from scratch: a 6-axis IMU on a two-layer USB-C board, schematic through fab files. Five bare PCBs and two assembled ones are on their way from JLCPCB. Next step is bring-up: check the 3.3 V rail, find it on I²C at 0x6A, write the driver.</p>
+        <div class="spec"><b>LSM6DSM</b> 6-axis IMU · <b>AP2112K</b> 3.3 V LDO · USB-C power · 2-layer</div>
+        </div>
       </li>
       <li>
+        <div class="thumb"><img src="assets/pomo.gif" alt="Pomo-01 screen with the deer running" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'photo soon'}))"></div>
+        <div>
         <div class="thing-head">
-          <h3><a href="https://github.com/igilarranz/esp32-mp3-player" rel="noopener">Portable MP3 player</a></h3>
-          <div class="tags"><span>C++</span><span>ESP32-S3</span><span>audio</span></div>
+          <h3><a href="https://github.com/igilarranz/deer-pomodoro" target="_blank" rel="noopener">Pomo-01</a><span class="status">released</span></h3>
         </div>
-        <p>A pocket-sized music player built from bare modules — a little screen, an audio amp, a microSD slot, a battery — held together by firmware I wrote myself.</p>
+        <p>A pomodoro timer that looks like a tiny handheld. The canvas is 128&times;160, the same as a real ST7735 display, so it could run on one someday. Hand-drawn bitmap font, and a deer that runs while you work and sleeps when you stop.</p>
+        <div class="spec">128×160 canvas · hand-set bitmap font · sprite animation · <b>Electron</b> build for Mac</div>
+        </div>
       </li>
       <li>
+        <div class="thumb"><img src="assets/mp3.jpg" alt="ESP32-S3 with the display showing MP3 Player" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'photo soon'}))"></div>
+        <div>
         <div class="thing-head">
-          <h3><a href="https://github.com/igilarranz/deer-pomodoro" rel="noopener">Pomo-01</a></h3>
-          <div class="tags"><span>pixel art</span><span>ST7735 UI</span><span>Electron</span></div>
+          <h3><a href="https://github.com/igilarranz/esp32-mp3-player" target="_blank" rel="noopener">Portable MP3 player</a><span class="status">wip</span></h3>
         </div>
-        <p>A pomodoro timer disguised as a pixel-art handheld — rendered on a true 128&times;160 canvas, the same resolution as the ST7735 displays I use on real hardware. Hand-set bitmap fonts, a galloping deer mascot, and a moon that rises while you focus.</p>
+        <p>A music player built from modules: ESP32-S3, a small display, a DAC, microSD, a battery. So far the SD card reads, audio plays over I2S, and the screen works (after a software-SPI workaround). Case and UI are next.</p>
+        <div class="spec"><b>ESP32-S3</b> · I2S DAC · <b>ILI9341</b> display · microSD over SPI</div>
+        </div>
       </li>
       <li>
+        <div class="thumb"><img class="icon" src="assets/bhl.jpg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'photo soon'}))"></div>
+        <div>
         <div class="thing-head">
-          <h3>EEG pattern analysis</h3>
-          <div class="tags"><span>Python</span><span>research</span></div>
+          <h3><a href="https://rmlab.org/" target="_blank" rel="noopener">Berkeley Humanoid Lite</a><span class="status">in progress</span></h3>
         </div>
-        <p>A signal-processing pipeline for EEG data from behavioral experiments, built during brain-machine interface research and presented at the Annual Pillars Conference.</p>
+        <p>An open-source humanoid we're assembling at the lab. I joined halfway through and inherited two spreadsheets that disagreed about what had been built and bought, so I built one tracker that was actually true. That's how we found out the motors for 12 of the 22 actuators had never been ordered.</p>
+        <div class="spec">22 actuators · <b>MAD 5010</b> motors · master tracker: registry, phases, orders, issues</div>
+        </div>
+      </li>
+      <li>
+        <div class="thumb"><img class="icon" src="assets/eeg.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'photo soon'}))"></div>
+        <div>
+        <div class="thing-head">
+          <h3>EEG pattern analysis<span class="status">2024</span></h3>
+        </div>
+        <p>Signal processing for EEG recordings from a behavioral study, from a summer in a brain-machine interface lab. Presented at the Pillars Conference.</p>
+        </div>
       </li>
     </ul>
   </div>
 </section>
 
-<section id="before">
-  <div class="col">
-    <h2><span class="px">✦</span>before this</h2>
-    <ul class="past">
-      <li>
-        <div class="what">Data Analyst — Safra National Bank<small>Power BI &amp; Tableau dashboards over big messy SQL datasets</small></div>
-        <div class="when">2024 – 25</div>
-      </li>
-      <li>
-        <div class="what">IT Help Desk Intern — Safra National Bank<small>frontline support &amp; asset management</small></div>
-        <div class="when">2024</div>
-      </li>
-      <li>
-        <div class="what">BMI Research Intern — SBSHS Program<small>EEG analysis in Python, presented at Pillars Conference</small></div>
-        <div class="when">2024</div>
-      </li>
-      <li>
-        <div class="what">Academic Tutor — Broward College<small>Java, Python &amp; math for 80+ students</small></div>
-        <div class="when">2023 – 24</div>
-      </li>
-    </ul>
-  </div>
-</section>
 
 <section class="say-hi" id="contact">
   <div class="col">
-    <h2>say hi!</h2>
-    <p>If you're building something with hardware in it — or hiring someone who loves to — I'd love to hear from you.</p>
+    <h2>say hi! <svg class="h2-star" viewBox="0 0 16 16" width="24" height="24" aria-hidden="true" shape-rendering="crispEdges" fill="currentColor"><rect x="8" y="0" width="1" height="1"/><rect x="6" y="1" width="1" height="1"/><rect x="10" y="1" width="1" height="1"/><rect x="6" y="2" width="1" height="1"/><rect x="10" y="2" width="1" height="1"/><rect x="5" y="3" width="1" height="1"/><rect x="11" y="3" width="1" height="1"/><rect x="5" y="4" width="1" height="1"/><rect x="11" y="4" width="1" height="1"/><rect x="0" y="5" width="5" height="1"/><rect x="12" y="5" width="4" height="1"/><rect x="0" y="6" width="1" height="1"/><rect x="6" y="6" width="1" height="1"/><rect x="8" y="6" width="1" height="1"/><rect x="15" y="6" width="1" height="1"/><rect x="1" y="7" width="1" height="1"/><rect x="6" y="7" width="1" height="1"/><rect x="8" y="7" width="1" height="1"/><rect x="14" y="7" width="1" height="1"/><rect x="2" y="8" width="1" height="1"/><rect x="6" y="8" width="1" height="1"/><rect x="8" y="8" width="1" height="1"/><rect x="13" y="8" width="1" height="1"/><rect x="3" y="9" width="1" height="1"/><rect x="12" y="9" width="1" height="1"/><rect x="2" y="10" width="1" height="1"/><rect x="13" y="10" width="1" height="1"/><rect x="2" y="11" width="1" height="1"/><rect x="13" y="11" width="1" height="1"/><rect x="1" y="12" width="1" height="1"/><rect x="7" y="12" width="1" height="1"/><rect x="14" y="12" width="1" height="1"/><rect x="1" y="13" width="1" height="1"/><rect x="5" y="13" width="2" height="1"/><rect x="8" y="13" width="2" height="1"/><rect x="14" y="13" width="1" height="1"/><rect x="0" y="14" width="1" height="1"/><rect x="3" y="14" width="2" height="1"/><rect x="11" y="14" width="2" height="1"/><rect x="15" y="14" width="1" height="1"/><rect x="0" y="15" width="3" height="1"/><rect x="13" y="15" width="3" height="1"/></svg></h2>
+    <p>If you're working on something interesting, or just want to say hello, send me an email. I reply.</p>
     <nav class="hero-links" aria-label="Contact links">
-      <a href="resume.pdf" rel="noopener">resume</a>
+      <a href="resume.pdf" target="_blank" rel="noopener">resume</a>
       <a href="mailto:isabellagilarranz@gmail.com">email</a>
-      <a href="https://github.com/igilarranz" rel="noopener">github</a>
-      <a href="https://www.linkedin.com/in/isabellagilarranz/" rel="noopener">linkedin</a>
+      <a href="https://github.com/igilarranz" target="_blank" rel="noopener">github</a>
+      <a href="https://www.linkedin.com/in/isabellagilarranz/" target="_blank" rel="noopener">linkedin</a>
     </nav>
   </div>
 </section>
 
 <footer>
-  <span class="px">© 2026 isabella gilarranz</span>
+  <span>© 2026 isabella gilarranz</span>
 </footer>
 
 
@@ -615,7 +698,7 @@
     <button id="atbClose" aria-label="Close">&times;</button>
   </div>
   <div class="atb-msgs" id="atbMsgs">
-    <div class="atb-a">hi! i'm bella's bunny. i handle her public relations. ask me anything below &#128062;</div>
+    <div class="atb-a">hi, i'm the bunny. i answer questions about bella. pick one &#128062;</div>
   </div>
   <div class="atb-chips" id="atbChips"></div>
 </div>
@@ -623,17 +706,17 @@
   (function () {
     var qa = [
       ["what does bella build?",
-       "robots, circuit boards, and firmware! she co-leads a full humanoid robot build at UM's Robotics &amp; Mechatronics Lab, designs PCBs in KiCad, and writes C++ for little devices like her handheld MP3 player. if it has copper in it, she's interested."],
+       "a bit of everything. she wrote the task planner for her lab's BEHAVIOR Challenge entry, designed a sensor board in KiCad, built a pixel-art pomodoro app, and helps run a humanoid robot build."],
       ["what's she working on right now?",
-       "two things: assembling a 22-actuator open-source humanoid (she tracks every single actuator — ask her about the motor order she caught before it stalled the project), and sending her custom MotionSense-IMU sensor board off for manufacturing. busy season at the burrow."],
+       "two things: building a 22-actuator humanoid (she tracks every actuator in a spreadsheet, ask her about the motor order she caught), and waiting for her MotionSense-IMU boards to come back from the fab."],
       ["what roles is she looking for?",
-       "summer 2027 internships in embedded systems, firmware, or hardware engineering. she's a junior at the University of Miami, EE + CS double major, President's Scholar. you can <a href='resume.pdf'>grab her resume</a> or <a href='mailto:isabellagilarranz@gmail.com'>email her</a> — she replies faster than i hop."],
+       "summer 2027 internships in embedded systems, robotics, or AI. she's a junior at the University of Miami, EE + CS, President's Scholar. here's her <a href='resume.pdf' target='_blank'>resume</a>, or just <a href='mailto:isabellagilarranz@gmail.com'>email her</a>."],
       ["why should we interview her?",
-       "she ships real things: a PCB designed from scratch to fab-ready, working firmware on real hardware, and a humanoid robot build she helps run — including untangling its logistics when two conflicting build records almost derailed it. she started at community college and earned a President's Scholarship at UM. trajectory like that doesn't happen by accident."],
+       "she finishes things. a board designed from a blank schematic and sent to fab, a planner that solves all 100 benchmark tasks, and a humanoid build she helps run. she started at community college and transferred to UM on a President's Scholarship."],
       ["where can i see her work?",
-       "her <a href='https://github.com/igilarranz' rel='noopener'>GitHub</a> has the goods — <a href='https://github.com/igilarranz/MotionSense-IMU' rel='noopener'>MotionSense-IMU</a> and the <a href='https://github.com/igilarranz/esp32-mp3-player' rel='noopener'>ESP32 MP3 player</a> — plus the projects section right on this page. photos of the robot are coming soon."],
+       "her <a href='https://github.com/igilarranz' target='_blank' rel='noopener'>GitHub</a> has <a href='https://github.com/igilarranz/MotionSense-IMU' target='_blank' rel='noopener'>MotionSense-IMU</a> and the <a href='https://github.com/igilarranz/esp32-mp3-player' target='_blank' rel='noopener'>ESP32 MP3 player</a>, plus the projects section on this page. robot photos soon."],
       ["who are you?",
-       "i'm the bunny! resident mascot, 32 pixels tall, drawn with love. i hop in when the page loads, give hearts when clicked, and search for missing pages on the 404. it's honest work."]
+       "the bunny. 32 pixels tall. i live in the corner of this page and answer questions. if you hit a 404, that's me looking for it."]
     ];
     var fab = document.getElementById('atbFab');
     var panel = document.getElementById('atbPanel');
@@ -697,10 +780,71 @@
   })();
 </script>
 
-<!-- Analytics (GoatCounter — free, no cookies, no consent banner needed):
-     1. Make a free account at goatcounter.com and pick a code, e.g. "igilarranz"
-     2. Replace MYCODE below with your code and delete these comment markers.
-<script data-goatcounter="https://MYCODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
--->
+
+<!-- Analytics: GoatCounter (free, no cookies). Sign up at goatcounter.com, pick a code, replace YOURCODE below. -->
+<script data-goatcounter="https://YOURCODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+
+<script>
+(function(){
+  const cv=document.getElementById('ascii'),field=document.getElementById('field'),g=cv.getContext('2d');
+  const INK=getComputedStyle(document.documentElement).getPropertyValue('--rose-deep').trim()||'#A96473';
+  const MID=getComputedStyle(document.documentElement).getPropertyValue('--rose').trim()||'#C4808F';
+  const DIM=getComputedStyle(document.documentElement).getPropertyValue('--bunny').trim()||'#918181';
+  const RAMP=" .,:-=+*#%@";
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let dpr=1,cw=6.6,ch=11,W=0,H=0,P=[],mx=-1e4,my=-1e4,R=0;
+  // five-point star outline
+  const V=[];for(let k=0;k<10;k++){const a=-Math.PI/2+k*Math.PI/5,r=k%2?0.42:1;V.push([r*Math.cos(a),r*Math.sin(a)])}
+  function inside(x,y){let c=false;for(let i=0,j=9;i<10;j=i++){const a=V[i],b=V[j];
+    if((a[1]>y)!==(b[1]>y)&&x<(b[0]-a[0])*(y-a[1])/(b[1]-a[1])+a[0])c=!c}return c}
+  function build(){
+    const r=field.getBoundingClientRect();const small=innerWidth<600;cw=small?5:6.6;ch=small?8.5:11;
+    dpr=Math.min(2,devicePixelRatio||1);cv.width=r.width*dpr;cv.height=r.height*dpr;
+    g.setTransform(dpr,0,0,dpr,0,0);g.font=(small?8:10.5)+'px ui-monospace,Menlo,Consolas,"DejaVu Sans Mono",monospace';g.textBaseline='top';
+    W=Math.floor(r.width/cw);H=Math.floor(r.height/ch);
+    const rad=r.height*0.52,cx=r.width/2,cy=r.height/2;R=rad*0.62;
+    P=[];
+    for(let y=0;y<H;y++)for(let x=0;x<W;x++){
+      const px=x*cw+cw/2,py=y*ch+ch/2,u=(px-cx)/rad,v=(py-cy)/rad;
+      if(!inside(u,v))continue;
+      const d=Math.hypot(u,v);            // 0 centre .. 1 tip
+      const b=Math.max(0,1-d*0.95);        // brighter in the middle
+      P.push({hx:px,hy:py,x:px,y:py,vx:0,vy:0,b:b,ph:Math.random()*6.28,w:0.6+Math.random()*0.8});
+    }
+  }
+  build();addEventListener('resize',build);
+  field.addEventListener('mousemove',e=>{const r=field.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top});
+  field.addEventListener('mouseleave',()=>{mx=-1e4;my=-1e4});
+  field.addEventListener('touchmove',e=>{const r=field.getBoundingClientRect(),p=e.touches[0];mx=p.clientX-r.left;my=p.clientY-r.top},{passive:true});
+  field.addEventListener('touchend',()=>{mx=-1e4;my=-1e4});
+  let last=0,t=0,onscreen=true;
+  new IntersectionObserver(e=>{onscreen=e[0].isIntersecting;if(onscreen){last=performance.now();requestAnimationFrame(frame)}}).observe(field);
+  function frame(now){
+    if(!onscreen)return;
+    const dt=Math.min(0.05,(now-last)/1000||0);last=now;t+=dt;
+    g.clearRect(0,0,cv.width,cv.height);
+    for(const p of P){
+      if(!reduced){
+        const dx=p.x-mx,dy=p.y-my,d=Math.hypot(dx,dy);
+        if(d<R){const f=(1-d/R);const k=f*f*2200;p.vx+=dx/d*k*dt;p.vy+=dy/d*k*dt}
+        // spring home + damping
+        p.vx+=(p.hx-p.x)*9*dt;p.vy+=(p.hy-p.y)*9*dt;
+        p.vx*=Math.pow(0.12,dt);p.vy*=Math.pow(0.12,dt);
+        p.x+=p.vx*dt;p.y+=p.vy*dt;
+      }
+      const disp=Math.hypot(p.x-p.hx,p.y-p.hy)/R;          // how far it's been flung
+      const tw=reduced?0:0.08*Math.sin(t*p.w+p.ph);
+      let lvl=p.b+tw-disp*0.9;                              // scattered chars fade out
+      if(lvl<=0)continue;
+      const c=RAMP[Math.min(RAMP.length-1,1+(lvl*(RAMP.length-2))|0)];
+      g.fillStyle=lvl>0.55?INK:lvl>0.3?MID:DIM;
+      g.fillText(c,p.x-cw/2,p.y-ch/2);
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>

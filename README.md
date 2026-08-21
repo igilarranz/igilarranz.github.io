@@ -1,16 +1,31 @@
-# igilarranz.github.io 🐰
+# igilarranz.github.io
 
-My personal portfolio — [igilarranz.github.io](https://igilarranz.github.io)
+Personal site: [igilarranz.github.io](https://igilarranz.github.io)
 
-Hand-built as a single HTML file: no frameworks, no build step, just HTML + CSS + a
-sprinkle of vanilla JS. Featuring a pixel bunny mascot (click it), a striped awning,
-and a 404 page where the bunny goes looking for the missing page.
+## Files
 
-**I'm Isabella** — EE + CS junior at the University of Miami. I build robots, tiny
-circuit boards, and the firmware that brings them to life. Currently co-leading the
-Berkeley Humanoid Lite build at UM's Robotics & Mechatronics Lab.
+- `index.html` — the whole site (CSS + JS inline, no build step)
+- `404.html` — custom not-found page
+- `resume.pdf` — **you need to add this** (linked from nav, hero, footer)
+- `bunny.png` — mascot
+- `assets/` — project thumbnails and `og-image.png` (link preview)
 
-📌 See also: [MotionSense-IMU](https://github.com/igilarranz/MotionSense-IMU) ·
-[esp32-mp3-player](https://github.com/igilarranz/esp32-mp3-player)
+## Deploy
 
-📬 isabellagilarranz@gmail.com · [LinkedIn](https://www.linkedin.com/in/isabellagilarranz/)
+1. Put `resume.pdf` in the repo root.
+2. In `index.html`, find `YOURCODE` in the GoatCounter line near the bottom and replace it with your code from goatcounter.com, or delete that `<script>` line.
+3. `git add -A && git commit -m "site redesign" && git push`
+4. Check in a private window: resume link, `/anything` for the 404, and paste the URL in a Slack DM to see the preview.
+
+## Thumbnails (`assets/`)
+
+Square images. Overwrite any file with the same name to swap the picture.
+
+| file | project | status |
+|---|---|---|
+| `behavior.png` | BEHAVIOR Challenge planner | placeholder, needs a plan/coverage screenshot |
+| `motionsense.jpg` | MotionSense-IMU | real (KiCad 3D render) |
+| `pomo.gif` | Pomo-01 | real (app recording) |
+| `mp3.jpg` | ESP32-S3 MP3 player | real (bench photo) |
+| `bhl.jpg` | Berkeley Humanoid Lite | placeholder, needs a photo |
+| `eeg.png` | EEG pattern analysis | placeholder, needs a plot |
