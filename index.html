@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Isabella Gilarranz</title>
-<meta name="description" content="Isabella Gilarranz — electrical engineering & computer science at the University of Miami. Circuit boards, planners, small apps, and whatever is in between." />
+<meta name="description" content="Isabella Gilarranz — electrical engineering & computer science at the University of Miami. Custom circuit boards, robot planners, embedded systems, and whatever is in between." />
 <meta property="og:title" content="Isabella Gilarranz" />
-<meta property="og:description" content="EE + CS junior at the University of Miami. Circuit boards, planners, small apps, and whatever is in between." />
+<meta property="og:description" content="EE + CS junior at the University of Miami. Custom circuit boards, robot planners, embedded systems, and whatever is in between." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://igilarranz.github.io/" />
 <meta property="og:image" content="https://igilarranz.github.io/assets/og-image.png" />
@@ -204,14 +204,19 @@
     font-size: 0.95rem;
   }
 
-  /* ---------- now strip (under hero) ---------- */
+  /* ---------- hero status line ---------- */
   .now {
-    display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 0.45rem 1.4rem;
-    margin: 0 auto 0.2rem; max-width: 600px; font-size: 0.86rem; color: var(--soft);
-    padding: 0.9rem 1.2rem; border: 1px dashed var(--line); border-radius: 12px;
+    display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 0.35rem 0;
+    margin: 0 auto 0.2rem; max-width: 620px; font-size: 0.86rem; color: var(--soft);
+    text-align: center;
   }
-  .now span::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--rose); margin-right: 0.5em; vertical-align: middle; position: relative; top: -1px; }
+  .now span + span::before { content: "·"; color: var(--bunny); margin: 0 0.65rem; }
   .now strong { color: var(--ink); font-weight: 500; }
+  @media (max-width: 560px) {
+    .now { display: block; line-height: 1.8; }
+    .now span { display: block; }
+    .now span + span::before { content: none; }
+  }
 
   /* ---------- skills ---------- */
   .skills { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.4rem; }
@@ -542,7 +547,7 @@
   <div class="col">
         <span class="px">hi, i'm</span>
     <h1>Isabella Gilarranz</h1>
-    <p class="hero-line">EE + CS junior at the University of Miami. I like building things, from <em>circuit boards</em> to <em>planners</em> to <em>small apps</em>.</p>
+    <p class="hero-line">EE + CS junior at the University of Miami. I like building things, from <em>custom circuit boards</em> to <em>robot planners</em> to <em>embedded systems</em>.</p>
     <nav class="hero-links" aria-label="Links">
       <a href="resume.pdf" target="_blank" rel="noopener">resume</a>
       <a href="mailto:isabellagilarranz@gmail.com">email</a>
@@ -552,7 +557,7 @@
   </div>
 </header>
 <div class="col">
-  <div class="now" aria-label="Right now">
+  <div class="now" aria-label="Current work and availability">
     <span>finishing the <strong>BEHAVIOR Challenge</strong> planner</span>
     <span>bringing up <strong>MotionSense-IMU rev A</strong></span>
     <span>open to <strong>Summer 2027</strong> internships</span>
@@ -564,10 +569,10 @@
 <section id="about">
   <div class="col">
     <h2>a little about me</h2>
-    <p>I'm a double major in electrical engineering and computer science, with a math minor. I like problems that sit between the two: a board that needs a driver, a task that needs a planner, a model that has to run on a chip with 512 KB of RAM.</p>
-    <p>Before UM I did my A.A. at Broward College, then transferred on a President's Scholarship. Along the way I spent a year at <strong>Safra National Bank</strong> (IT help desk, then their BI dashboards) and a summer doing <strong>brain-machine interface research</strong>, which is where I first got to work with real signals from real hardware.</p>
-    <p>Right now I'm a researcher at UM's <a href="https://rmlab.org/" target="_blank" rel="noopener">Robotics &amp; Mechatronics Lab</a>, where I write the task planner for our <strong>BEHAVIOR Challenge 2026</strong> entry and help run the build of an open-source humanoid. I'm interested in embedded systems, AI, and the places where software meets the physical world.</p>
-    <p>Things I use a lot:</p>
+    <p>I'm an Electrical Engineering and Computer Science student at the University of Miami, with a minor in Mathematics. I'm especially interested in embedded systems, robotics, and projects where hardware and software have to work together.</p>
+    <p>I'm currently doing research at UM's <a href="https://rmlab.org/" target="_blank" rel="noopener">Robotics &amp; Mechatronics Lab</a>, where I work on autonomous systems and task planning for the <strong>BEHAVIOR Challenge 2026</strong> and help build an open-source humanoid robot.</p>
+    <p>Outside the lab, I design my own boards and build embedded systems. I'm happiest on projects where the hardware and firmware are both mine to figure out.</p>
+    <p>What I work with:</p>
     <div class="skills">
       <span>C / C++</span><span>Python</span><span>KiCad</span><span>ESP32</span><span>I²C · SPI · I2S</span><span>PDDL · Fast Downward</span><span>Git · Linux</span><span>SQL · Power BI</span><span>JavaScript · Electron</span>
     </div>
@@ -592,9 +597,9 @@
         <div class="thumb"><img src="assets/motionsense.jpg" alt="3D render of the MotionSense IMU board" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'photo soon'}))"></div>
         <div>
         <div class="thing-head">
-          <h3><a href="https://github.com/igilarranz/MotionSense-IMU" target="_blank" rel="noopener">MotionSense-IMU</a><span class="status">fabricated</span></h3>
+          <h3><a href="https://github.com/igilarranz/MotionSense-IMU" target="_blank" rel="noopener">MotionSense-IMU</a><span class="status">bring-up</span></h3>
         </div>
-        <p>My first board from scratch: a 6-axis IMU on a two-layer USB-C board, schematic through fab files. Five bare PCBs and two assembled ones are on their way from JLCPCB. Next step is bring-up: check the 3.3 V rail, find it on I²C at 0x6A, write the driver.</p>
+        <p>Designed and fabricated a two-layer USB-C IMU board from schematic through assembly. The boards are back from JLCPCB, and I’m validating power rails, I²C communication, and sensor bring-up before writing the driver.</p>
         <div class="spec"><b>LSM6DSM</b> 6-axis IMU · <b>AP2112K</b> 3.3 V LDO · USB-C power · 2-layer</div>
         </div>
       </li>
@@ -614,7 +619,7 @@
         <div class="thing-head">
           <h3><a href="https://github.com/igilarranz/esp32-mp3-player" target="_blank" rel="noopener">Portable MP3 player</a><span class="status">wip</span></h3>
         </div>
-        <p>A music player built from modules: ESP32-S3, a small display, a DAC, microSD, a battery. So far the SD card reads, audio plays over I2S, and the screen works (after a software-SPI workaround). Case and UI are next.</p>
+        <p>A music player built from modules: ESP32-S3, a small display, a DAC, microSD, a battery. So far the SD card reads, audio plays over I2S, and the display is running. Case and UI are next.</p>
         <div class="spec"><b>ESP32-S3</b> · I2S DAC · <b>ILI9341</b> display · microSD over SPI</div>
         </div>
       </li>
@@ -645,7 +650,7 @@
 <section class="say-hi" id="contact">
   <div class="col">
     <h2>say hi! <svg class="h2-star" viewBox="0 0 16 16" width="24" height="24" aria-hidden="true" shape-rendering="crispEdges" fill="currentColor"><rect x="8" y="0" width="1" height="1"/><rect x="6" y="1" width="1" height="1"/><rect x="10" y="1" width="1" height="1"/><rect x="6" y="2" width="1" height="1"/><rect x="10" y="2" width="1" height="1"/><rect x="5" y="3" width="1" height="1"/><rect x="11" y="3" width="1" height="1"/><rect x="5" y="4" width="1" height="1"/><rect x="11" y="4" width="1" height="1"/><rect x="0" y="5" width="5" height="1"/><rect x="12" y="5" width="4" height="1"/><rect x="0" y="6" width="1" height="1"/><rect x="6" y="6" width="1" height="1"/><rect x="8" y="6" width="1" height="1"/><rect x="15" y="6" width="1" height="1"/><rect x="1" y="7" width="1" height="1"/><rect x="6" y="7" width="1" height="1"/><rect x="8" y="7" width="1" height="1"/><rect x="14" y="7" width="1" height="1"/><rect x="2" y="8" width="1" height="1"/><rect x="6" y="8" width="1" height="1"/><rect x="8" y="8" width="1" height="1"/><rect x="13" y="8" width="1" height="1"/><rect x="3" y="9" width="1" height="1"/><rect x="12" y="9" width="1" height="1"/><rect x="2" y="10" width="1" height="1"/><rect x="13" y="10" width="1" height="1"/><rect x="2" y="11" width="1" height="1"/><rect x="13" y="11" width="1" height="1"/><rect x="1" y="12" width="1" height="1"/><rect x="7" y="12" width="1" height="1"/><rect x="14" y="12" width="1" height="1"/><rect x="1" y="13" width="1" height="1"/><rect x="5" y="13" width="2" height="1"/><rect x="8" y="13" width="2" height="1"/><rect x="14" y="13" width="1" height="1"/><rect x="0" y="14" width="1" height="1"/><rect x="3" y="14" width="2" height="1"/><rect x="11" y="14" width="2" height="1"/><rect x="15" y="14" width="1" height="1"/><rect x="0" y="15" width="3" height="1"/><rect x="13" y="15" width="3" height="1"/></svg></h2>
-    <p>If you're working on something interesting, or just want to say hello, send me an email. I reply.</p>
+    <p>If you're working on something interesting, or just want to say hello, send me an email.</p>
     <nav class="hero-links" aria-label="Contact links">
       <a href="resume.pdf" target="_blank" rel="noopener">resume</a>
       <a href="mailto:isabellagilarranz@gmail.com">email</a>
@@ -708,7 +713,7 @@
       ["what does bella build?",
        "a bit of everything. she wrote the task planner for her lab's BEHAVIOR Challenge entry, designed a sensor board in KiCad, built a pixel-art pomodoro app, and helps run a humanoid robot build."],
       ["what's she working on right now?",
-       "two things: building a 22-actuator humanoid (she tracks every actuator in a spreadsheet, ask her about the motor order she caught), and waiting for her MotionSense-IMU boards to come back from the fab."],
+       "two things: building a 22-actuator humanoid (she tracks every actuator in a spreadsheet, ask her about the motor order she caught), and bringing up her MotionSense-IMU boards now that they’re back from fab."],
       ["what roles is she looking for?",
        "summer 2027 internships in embedded systems, robotics, or AI. she's a junior at the University of Miami, EE + CS, President's Scholar. here's her <a href='resume.pdf' target='_blank'>resume</a>, or just <a href='mailto:isabellagilarranz@gmail.com'>email her</a>."],
       ["why should we interview her?",
