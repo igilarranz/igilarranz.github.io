@@ -317,6 +317,8 @@
     white-space: nowrap;
   }
   .things p { margin-bottom: 0; font-size: 0.97rem; }
+  .project-links { display: flex; gap: 1rem; margin-top: 0.5rem; font-size: 0.84rem; }
+  .project-links a { color: var(--rose-deep); }
 
   /* ---------- past ---------- */
   .past { list-style: none; }
@@ -597,10 +599,11 @@
         <div class="thumb"><img src="assets/motionsense.jpg" alt="3D render of the MotionSense IMU board" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'photo soon'}))"></div>
         <div>
         <div class="thing-head">
-          <h3><a href="https://github.com/igilarranz/MotionSense-IMU" target="_blank" rel="noopener">MotionSense-IMU</a><span class="status">bring-up</span></h3>
+          <h3><a href="motionsense.html">MotionSense-IMU</a><span class="status">bring-up</span></h3>
         </div>
         <p>Designed and fabricated a two-layer USB-C IMU board from schematic through assembly. The boards are back from JLCPCB, and I’m validating power rails, I²C communication, and sensor bring-up before writing the driver.</p>
         <div class="spec"><b>LSM6DSM</b> 6-axis IMU · <b>AP2112K</b> 3.3 V LDO · USB-C power · 2-layer</div>
+        <div class="project-links"><a href="motionsense.html">project log →</a><a href="https://github.com/igilarranz/MotionSense-IMU" target="_blank" rel="noopener">github ↗</a></div>
         </div>
       </li>
       <li>
