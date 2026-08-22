@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MotionSense-IMU — Isabella Gilarranz</title>
+<meta name="description" content="MotionSense-IMU — a two-layer USB-C powered LSM6DSM sensor board designed, fabricated, and brought up by Isabella Gilarranz." />
+<meta property="og:title" content="MotionSense-IMU — Isabella Gilarranz" />
+<meta property="og:description" content="From blank schematic to fabricated hardware: a USB-C powered LSM6DSM IMU board designed in KiCad." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://igilarranz.github.io/motionsense.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=Pixelify+Sans:wght@400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #FFFDF9;
+    --ink: #3B3335;
+    --soft: #7E7376;
+    --bunny: #918181;
+    --rose: #C4808F;
+    --rose-deep: #A96473;
+    --blush: #F7ECEC;
+    --line: #EAE2DC;
+    --paper: #FFFFFF;
+    --green: #66755D;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Karla', sans-serif;
+    font-size: 16.5px;
+    line-height: 1.72;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--blush); color: var(--rose-deep); }
+  a { color: var(--rose-deep); text-decoration: none; border-bottom: 1.5px solid var(--blush); }
+  a:hover { border-color: var(--rose); }
+  a:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; border-radius: 2px; }
+  img { max-width: 100%; }
+
+  .awning { line-height: 0; }
+  .awning::before {
+    content: ""; display: block; height: 14px;
+    background: repeating-linear-gradient(90deg, #CBD3BC 0px, #CBD3BC 18px, #F3DCE4 18px, #F3DCE4 28px);
+  }
+  .awning::after {
+    content: ""; display: block; height: 4px; margin-top: 4px;
+    background: repeating-linear-gradient(90deg, #D97A94 0px, #D97A94 7px, transparent 7px, transparent 14px);
+  }
+
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar-inner {
+    width: min(980px, calc(100% - 2.8rem)); margin: 0 auto;
+    min-height: 54px; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  }
+  .home { font-family: 'Fraunces', serif; font-weight: 600; color: var(--ink); border-bottom: none; }
+  .home:hover { color: var(--rose-deep); }
+  .top-links { display: flex; gap: 1.1rem; font-size: 0.88rem; }
+  .top-links a { color: var(--soft); border-bottom-color: transparent; }
+  .top-links a:hover { color: var(--rose-deep); border-bottom-color: var(--blush); }
+
+  main { width: min(980px, calc(100% - 2.8rem)); margin: 0 auto; }
+  .narrow { width: min(700px, 100%); margin-left: auto; margin-right: auto; }
+  .px {
+    font-family: 'Pixelify Sans', monospace; font-size: 0.78rem; letter-spacing: 0.12em;
+    color: var(--bunny); text-transform: lowercase;
+  }
+
+  .hero { padding: 5.2rem 0 2.8rem; }
+  .hero .px { display: block; margin-bottom: 0.8rem; }
+  h1, h2, h3 { font-family: 'Fraunces', serif; }
+  h1 { font-size: clamp(2.8rem, 7vw, 5.2rem); font-weight: 500; line-height: 0.98; letter-spacing: -0.025em; }
+  .lede { max-width: 690px; margin-top: 1.4rem; color: var(--soft); font-size: clamp(1.05rem, 2vw, 1.2rem); }
+  .lede strong { color: var(--ink); font-weight: 500; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 1.5rem; font-size: 0.94rem; }
+  .status { display: inline-flex; align-items: center; gap: 0.45rem; color: var(--green); }
+  .status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+
+  .hero-media {
+    margin: 1.2rem 0 4.5rem; border: 1px solid var(--line); border-radius: 18px; overflow: hidden;
+    background: var(--paper); box-shadow: 0 14px 40px rgba(59,51,53,0.06);
+  }
+  .hero-media img { width: 100%; display: block; aspect-ratio: 16 / 9; object-fit: contain; padding: 1rem; background: #fff; }
+  .caption { padding: 0.75rem 1rem 0.9rem; border-top: 1px solid var(--line); color: var(--bunny); font-size: 0.78rem; }
+
+  .facts {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-bottom: 4.6rem;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  }
+  .fact { padding: 1.2rem 1rem; }
+  .fact + .fact { border-left: 1px solid var(--line); }
+  .fact .label { display: block; color: var(--bunny); font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.25rem; }
+  .fact strong { font-weight: 500; }
+
+  .chapter { padding: 4rem 0; border-top: 1px dashed var(--line); }
+  .chapter-head { display: grid; grid-template-columns: 92px 1fr; gap: 1rem; margin-bottom: 1.6rem; }
+  .chapter-num { font-family: 'Pixelify Sans', monospace; color: var(--rose); letter-spacing: 0.1em; padding-top: 0.28rem; }
+  h2 { font-size: clamp(1.65rem, 4vw, 2.25rem); font-weight: 500; line-height: 1.15; }
+  .chapter-body { margin-left: 108px; max-width: 700px; }
+  .chapter-body p { color: var(--soft); margin-bottom: 1rem; }
+  .chapter-body strong { color: var(--ink); font-weight: 600; }
+
+  .flow {
+    display: grid; grid-template-columns: repeat(4, 1fr); align-items: stretch; gap: 0.8rem; margin: 2rem 0;
+  }
+  .flow-card {
+    position: relative; padding: 1rem; min-height: 112px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper);
+  }
+  .flow-card:not(:last-child)::after {
+    content: "→"; position: absolute; right: -0.66rem; top: 50%; transform: translateY(-50%);
+    color: var(--rose); background: var(--bg); padding: 0 0.15rem; z-index: 2;
+  }
+  .flow-card .px { font-size: 0.68rem; display: block; margin-bottom: 0.3rem; }
+  .flow-card strong { font-weight: 600; display: block; margin-bottom: 0.18rem; }
+  .flow-card span { color: var(--soft); font-size: 0.88rem; line-height: 1.4; display: block; }
+
+  .parts { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 1.7rem 0; }
+  .part { padding: 0.9rem 1rem; border-bottom: 1px solid var(--line); }
+  .part strong { display: block; }
+  .part span { color: var(--soft); font-size: 0.9rem; }
+
+  .image-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.8rem; }
+  .image-card { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #fff; }
+  .image-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; display: block; padding: 0.8rem; }
+  .image-card .caption { background: var(--bg); }
+
+  .checks { list-style: none; margin-top: 1.5rem; border-top: 1px solid var(--line); }
+  .checks li { display: grid; grid-template-columns: 96px 1fr; gap: 1rem; padding: 0.85rem 0; border-bottom: 1px solid var(--line); }
+  .check-state { font-family: 'Pixelify Sans', monospace; font-size: 0.74rem; letter-spacing: 0.06em; }
+  .done { color: var(--green); }
+  .doing { color: var(--rose-deep); }
+  .next { color: var(--bunny); }
+  .checks span:last-child { color: var(--soft); }
+  .checks strong { color: var(--ink); font-weight: 500; }
+
+  .files { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1.5rem; }
+  .file-link { padding: 0.45rem 0.75rem; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); font-size: 0.88rem; }
+  .file-link:hover { border-color: var(--rose); color: var(--rose-deep); }
+
+  .closing { padding: 4rem 0 5rem; border-top: 1px dashed var(--line); }
+  .closing-inner { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+  .closing p { color: var(--soft); }
+  footer { border-top: 1px solid var(--line); padding: 2.2rem 0 3rem; color: var(--bunny); font-size: 0.8rem; text-align: center; }
+
+  @media (max-width: 720px) {
+    main, .topbar-inner { width: min(100% - 2rem, 980px); }
+    .hero { padding-top: 3.8rem; }
+    .facts { grid-template-columns: 1fr 1fr; }
+    .fact:nth-child(3) { border-left: none; border-top: 1px solid var(--line); }
+    .fact:nth-child(4) { border-top: 1px solid var(--line); }
+    .chapter-head { grid-template-columns: 58px 1fr; }
+    .chapter-body { margin-left: 74px; }
+    .flow { grid-template-columns: 1fr 1fr; }
+    .flow-card::after { display: none; }
+    .image-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    body { font-size: 16px; }
+    .top-links a:first-child { display: none; }
+    .hero { padding-top: 3rem; }
+    .facts { grid-template-columns: 1fr; }
+    .fact + .fact, .fact:nth-child(3), .fact:nth-child(4) { border-left: none; border-top: 1px solid var(--line); }
+    .chapter-head { display: block; }
+    .chapter-num { margin-bottom: 0.45rem; }
+    .chapter-body { margin-left: 0; }
+    .flow, .parts { grid-template-columns: 1fr; }
+    .checks li { grid-template-columns: 78px 1fr; }
+    .closing-inner { display: block; }
+    .closing-inner a { display: inline-block; margin-top: 1rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div class="awning" aria-hidden="true"></div>
+<nav class="topbar" aria-label="Project navigation">
+  <div class="topbar-inner">
+    <a class="home" href="index.html">← isabella gilarranz</a>
+    <div class="top-links">
+      <a href="index.html#projects">all projects</a>
+      <a href="https://github.com/igilarranz/MotionSense-IMU" target="_blank" rel="noopener">github ↗</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <header class="hero">
+    <div class="narrow">
+      <span class="px">project log / hardware</span>
+      <h1>MotionSense-IMU</h1>
+      <p class="lede">My first custom PCB: a <strong>6-axis IMU board</strong> designed from a blank schematic, routed in KiCad, sent through fabrication and assembly, and now in hardware bring-up.</p>
+      <div class="hero-actions">
+        <span class="status">bring-up in progress</span>
+        <a href="https://github.com/igilarranz/MotionSense-IMU" target="_blank" rel="noopener">source + hardware files ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <figure class="hero-media">
+    <img src="assets/motionsense.jpg" alt="MotionSense-IMU board" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/igilarranz/MotionSense-IMU/main/pcb_3D.png'" />
+    <figcaption class="caption">MotionSense-IMU Rev A · two-layer USB-C powered sensor board</figcaption>
+  </figure>
+
+  <div class="facts" aria-label="Project facts">
+    <div class="fact"><span class="label">sensor</span><strong>LSM6DSM</strong></div>
+    <div class="fact"><span class="label">power</span><strong>USB-C → 3.3 V</strong></div>
+    <div class="fact"><span class="label">board</span><strong>~35 × 27 mm</strong></div>
+    <div class="fact"><span class="label">tools</span><strong>KiCad · JLCPCB</strong></div>
+  </div>
+
+  <section class="chapter" id="idea">
+    <div class="chapter-head narrow">
+      <span class="chapter-num">01 /</span>
+      <h2>starting from a blank schematic</h2>
+    </div>
+    <div class="chapter-body">
+      <p>I wanted a hardware project where I owned the whole path, not just the firmware after someone else had already designed the board. MotionSense started as a blank KiCad project and a simple goal: power an IMU from USB-C and expose everything a microcontroller needs to talk to it.</p>
+      <p>The result is a small breakout board around the <strong>ST LSM6DSM</strong>, a 6-axis accelerometer and gyroscope. It takes 5 V from USB-C, regulates it to 3.3 V, and breaks out power, I²C, and the sensor's INT1 signal through a 5-pin header.</p>
+    </div>
+  </section>
+
+  <section class="chapter" id="architecture">
+    <div class="chapter-head narrow">
+      <span class="chapter-num">02 /</span>
+      <h2>the architecture</h2>
+    </div>
+    <div class="chapter-body">
+      <p>I kept Rev A intentionally small: one power path, one sensor, and one clean interface to an external MCU. That made the board manageable enough to design from scratch while still forcing me to think through power, pull-ups, decoupling, routing, fabrication, and bring-up.</p>
+      <div class="flow" aria-label="MotionSense signal flow">
+        <div class="flow-card"><span class="px">input</span><strong>USB-C</strong><span>5 V power input</span></div>
+        <div class="flow-card"><span class="px">regulation</span><strong>AP2112K</strong><span>3.3 V LDO</span></div>
+        <div class="flow-card"><span class="px">sensing</span><strong>LSM6DSM</strong><span>accelerometer + gyro</span></div>
+        <div class="flow-card"><span class="px">interface</span><strong>5-pin header</strong><span>3V3 · GND · SDA · SCL · INT1</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="schematic">
+    <div class="chapter-head narrow">
+      <span class="chapter-num">03 /</span>
+      <h2>schematic decisions</h2>
+    </div>
+    <div class="chapter-body">
+      <p>The schematic is small, but every part has a job. I used an <strong>AP2112K-3.3</strong> regulator for the 3.3 V rail, 4.7 kΩ pull-ups on SDA and SCL, and local decoupling around both the regulator and IMU.</p>
+      <div class="parts">
+        <div class="part"><strong>LSM6DSM</strong><span>6-axis accelerometer + gyroscope</span></div>
+        <div class="part"><strong>AP2112K-3.3</strong><span>5 V to 3.3 V regulation</span></div>
+        <div class="part"><strong>4.7 kΩ × 2</strong><span>I²C pull-ups for SDA + SCL</span></div>
+        <div class="part"><strong>5-pin header</strong><span>3V3 · GND · SDA · SCL · INT1</span></div>
+      </div>
+      <p>The external-microcontroller approach was deliberate. Rev A is a sensor board first, so I can bring up the IMU independently and connect it to whatever controller makes sense for the next version.</p>
+    </div>
+  </section>
+
+  <section class="chapter" id="layout">
+    <div class="chapter-head narrow">
+      <span class="chapter-num">04 /</span>
+      <h2>layout, routing, and checks</h2>
+    </div>
+    <div class="chapter-body">
+      <p>I laid out the board as a two-layer design in KiCad. I experimented with Quilter and Freerouting during routing, then brought the result back into KiCad for cleanup and final checks.</p>
+      <p>The finished design passes KiCad DRC with <strong>0 violations and 0 unconnected items</strong>. I also generated the Gerber and drill files and checked them in GerbView before sending the board out.</p>
+      <div class="image-grid">
+        <figure class="image-card">
+          <img src="https://raw.githubusercontent.com/igilarranz/MotionSense-IMU/main/pcb_layout.png" alt="MotionSense PCB layout in KiCad" />
+          <figcaption class="caption">PCB layout · two layers</figcaption>
+        </figure>
+        <figure class="image-card">
+          <img src="https://raw.githubusercontent.com/igilarranz/MotionSense-IMU/main/pcb_3D.png" alt="MotionSense PCB 3D render" />
+          <figcaption class="caption">KiCad 3D render before fabrication</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="fab">
+    <div class="chapter-head narrow">
+      <span class="chapter-num">05 /</span>
+      <h2>from KiCad to a real board</h2>
+    </div>
+    <div class="chapter-body">
+      <p>I generated the Gerbers, drill files, BOM, and component-position data for manufacturing, then sent the design to JLCPCB. The order gave me five boards total, with two assembled.</p>
+      <p>This was the part where the project stopped being a clean CAD file and became actual hardware I could probe, debug, and potentially revise.</p>
+    </div>
+  </section>
+
+  <section class="chapter" id="bringup">
+    <div class="chapter-head narrow">
+      <span class="chapter-num">06 /</span>
+      <h2>bring-up</h2>
+    </div>
+    <div class="chapter-body">
+      <p>The boards are back from fabrication, so Rev A is now in bring-up. I’m checking the power path first, then I²C communication, then the sensor itself before moving on to a driver.</p>
+      <ul class="checks">
+        <li><span class="check-state done">done</span><span><strong>fabrication + assembly</strong> — physical Rev A boards are in hand</span></li>
+        <li><span class="check-state doing">checking</span><span><strong>power rails</strong> — verify USB 5 V input and regulated 3.3 V</span></li>
+        <li><span class="check-state next">next</span><span><strong>I²C detection</strong> — confirm the LSM6DSM responds at its configured address</span></li>
+        <li><span class="check-state next">next</span><span><strong>sensor identity</strong> — read WHO_AM_I and verify communication</span></li>
+        <li><span class="check-state next">next</span><span><strong>live data</strong> — stream accelerometer and gyroscope readings</span></li>
+        <li><span class="check-state next">next</span><span><strong>driver + INT1</strong> — write the interface and test the interrupt pin</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter" id="files">
+    <div class="chapter-head narrow">
+      <span class="chapter-num">07 /</span>
+      <h2>files</h2>
+    </div>
+    <div class="chapter-body">
+      <p>The repository includes the KiCad project, BOM, fabrication ZIP, layout screenshots, and 3D render. I’ll keep the project log updated as bring-up continues and use anything I find to inform Rev B.</p>
+      <div class="files">
+        <a class="file-link" href="https://github.com/igilarranz/MotionSense-IMU" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="file-link" href="https://github.com/igilarranz/MotionSense-IMU/blob/main/BOM.csv" target="_blank" rel="noopener">BOM ↗</a>
+        <a class="file-link" href="https://github.com/igilarranz/MotionSense-IMU/blob/main/MotionSense_IMU.kicad_pcb" target="_blank" rel="noopener">PCB file ↗</a>
+        <a class="file-link" href="https://github.com/igilarranz/MotionSense-IMU/blob/main/MotionSense_IMU_Rev1_Gerbers.zip" target="_blank" rel="noopener">Gerbers ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="narrow closing-inner">
+      <p>Next up: finish bring-up, get live IMU data, and document what Rev B should change.</p>
+      <a href="index.html#projects">← back to projects</a>
+    </div>
+  </section>
+</main>
+
+<footer>© 2026 isabella gilarranz</footer>
+</body>
+</html>
